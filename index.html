@@ -1,0 +1,874 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国際保健友の会 ハクナマタタ - 温もりと情熱の大地</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        terracotta: '#CC5500',
+                        beige: '#F9F6F0',
+                        olive: '#556B2F',
+                        turquoise: '#40E0D0',
+                        sunset: '#FFD700',
+                        dark: '#333333'
+                    },
+                    fontFamily: {
+                        noto: ['"Noto Sans JP"', 'sans-serif'],
+                        mplus: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #F9F6F0;
+            color: #333333;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(20, 20, 20, 0.8) 0%, rgba(20, 20, 20, 0.4) 100%);
+        }
+
+        .pattern-bg {
+            background-color: #F9F6F0;
+            background-image: radial-gradient(#d1cbbd 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 16px;
+            height: 100%;
+            width: 4px;
+            background: #556B2F;
+            border-radius: 2px;
+        }
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .timeline-item:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+            .timeline-item:nth-child(even) .timeline-content {
+                text-align: right;
+            }
+        }
+
+        .field-card-img {
+            transition: transform 0.5s ease;
+        }
+        .field-card:hover .field-card-img {
+            transform: scale(1.05);
+        }
+
+        .heading-accent::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #CC5500;
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+
+        /* チャットボット用の追加スタイル */
+        .typing-indicator span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #CC5500;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        #chatbot-messages {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+        #chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        #chatbot-messages::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center text-white">
+        <a href="#" class="flex items-center">
+            <img src="./image.png" alt="ハクナマタタ ロゴ" class="h-12 md:h-14 w-auto object-contain bg-white/80 rounded-lg p-1 shadow-sm transition-all" onerror="this.src='https://placehold.co/200x60/333/FFF?text=Hakunamatata'">
+        </a>
+        <div class="hidden md:flex gap-8 font-bold text-sm tracking-wide">
+            <a href="#about" class="hover:text-sunset transition-colors">ハクナマタタとは</a>
+            <a href="#fields" class="hover:text-sunset transition-colors">活動フィールド</a>
+            <a href="#history" class="hover:text-sunset transition-colors">歴史と実績</a>
+        </div>
+        <a href="#cta" class="bg-terracotta hover:bg-orange-700 text-white px-6 py-2 rounded-full font-bold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            参加・お問い合わせ
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen min-h-[600px] w-full bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop');">
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <div class="mb-6 flex">
+                    <img src="./image.png" alt="ハクナマタタ ロゴ" class="h-24 md:h-32 w-auto object-contain bg-white/90 rounded-2xl p-3 shadow-xl" onerror="this.style.display='none'">
+                </div>
+                <span class="inline-block py-1 px-3 rounded-full bg-olive text-white text-sm font-bold tracking-widest mb-6">SINCE 2001</span>
+                <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
+                    リアルな世界と触れ、<br>
+                    自分をアップデートする。<br>
+                    <span class="text-sunset">国際保健の最前線へ。</span>
+                </h1>
+                <p class="text-gray-200 text-lg md:text-xl max-w-2xl font-medium leading-relaxed mb-10">
+                    20年以上の歴史を持つ学生団体「ハクナマタタ」が届ける、心動くフィールドワーク。教科書には載っていない「人と人の繋がり」が、ここにはあります。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#about" class="bg-white text-terracotta border-2 border-white hover:bg-transparent hover:text-white px-8 py-4 rounded-full font-bold text-center transition-all">
+                        活動を知る
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto pattern-bg">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div class="w-full lg:w-1/2" data-aos="fade-right">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop" alt="ミーティングの様子" class="rounded-2xl shadow-2xl relative z-10">
+                    <div class="absolute -bottom-6 -right-6 w-full h-full border-4 border-terracotta rounded-2xl z-0"></div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2" data-aos="fade-left">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-dark">
+                    国境を越え、保健医療の課題に<br>草の根で向き合う。
+                </h2>
+                <div class="w-16 h-2 bg-sunset mb-8 rounded"></div>
+                <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                    国際保健友の会 ハクナマタタは、学生による、学生のための、世界と繋がるプラットフォームです。
+                </p>
+                <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                    ケニア、エチオピア、タンザニア、フィリピン、ベトナム、カンボジア、ネパール、中国、キューバ、そして日本の地域社会（小町・東北）。私たちは現場に足を運び、現地の声に直接耳を傾けながら、彼らと共に歩み、共に学びます。
+                </p>
+                <p class="text-lg leading-relaxed text-gray-700 font-bold text-olive">
+                    「支援する・される」という関係を超えた、真の国際協力を目指して。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Fields Section -->
+    <section id="fields" class="py-24 bg-white px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-dark heading-accent">活動のフィールド</h2>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto">世界各地、そして日本の地域社会へ。ハクナマタタの活動は多岐にわたります。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="field-card rounded-2xl overflow-hidden shadow-lg bg-beige group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1974&auto=format&fit=crop" alt="Africa" class="w-full h-full object-cover field-card-img">
+                        <div class="absolute top-4 right-4 bg-terracotta text-white text-xs font-bold px-3 py-1 rounded-full shadow">Since 2001</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-lg font-bold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-terracotta"></i> ケニア・エチオピア・タンザニア
+                        </h3>
+                        <p class="text-sm text-gray-600 font-medium mb-3">衛生教育と現地調査</p>
+                        <p class="text-sm text-gray-700">ハクナマタタ原点の地アフリカ。現地の小学校やコミュニティに入り、子供たちへの衛生教育や健康状態の調査などを実施してきました。</p>
+                    </div>
+                </div>
+
+                <div class="field-card rounded-2xl overflow-hidden shadow-lg bg-beige group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=1974&auto=format&fit=crop" alt="Southeast Asia" class="w-full h-full object-cover field-card-img">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-lg font-bold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-turquoise"></i> フィリピン・ベトナム・カンボジア
+                        </h3>
+                        <p class="text-sm text-gray-600 font-medium mb-3">地域住民への健康調査・相談</p>
+                        <p class="text-sm text-gray-700">東南アジアの農村部に滞在し、現地の医療従事者や学生と協働しながら、住民の健康課題の抽出と健康相談を実施します。</p>
+                    </div>
+                </div>
+
+                <div class="field-card rounded-2xl overflow-hidden shadow-lg bg-beige group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2074&auto=format&fit=crop" alt="East Asia" class="w-full h-full object-cover field-card-img">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-lg font-bold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-olive"></i> ネパール・中国・キューバ
+                        </h3>
+                        <p class="text-sm text-gray-600 font-medium mb-3">医療システムと文化の学び</p>
+                        <p class="text-sm text-gray-700">都市と山間部の医療格差、独自のファミリードクター制度など、国ごとの多様な保健医療政策について現地機関と連携し深く学びます。</p>
+                    </div>
+                </div>
+
+                <div class="field-card rounded-2xl overflow-hidden shadow-lg bg-beige group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=2092&auto=format&fit=crop" alt="Japan" class="w-full h-full object-cover field-card-img">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-lg font-bold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-sunset"></i> 日本 (東北・小町)
+                        </h3>
+                        <p class="text-sm text-gray-600 font-medium mb-3">被災地支援と地域医療</p>
+                        <p class="text-sm text-gray-700">東北での心のケアや、地元（小町）での農業を通じた住民との交流、健康教室など、足元からの保健医療にも注力しています。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Hakunamatata Section -->
+    <section id="features" class="py-24 bg-olive text-white px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">ハクナマタタの3つの魅力</h2>
+                <div class="w-16 h-1 bg-sunset mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-24 h-24 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-earth-africa text-4xl text-sunset"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold mb-4">圧倒的なリアル</h3>
+                    <p class="text-gray-200 leading-relaxed">
+                        観光旅行や座学では決して得られない、現地の保健医療課題に直接触れる経験。教科書を超えた学びが現場にあります。
+                    </p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-24 h-24 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-handshake-angle text-4xl text-turquoise"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold mb-4">深い人と人の繋がり</h3>
+                    <p class="text-gray-200 leading-relaxed">
+                        一時的な訪問者としてではなく、生活を共にし、対話する。言葉の壁を越えた温かい交流と、一生モノの絆が生まれます。
+                    </p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-24 h-24 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-arrow-trend-up text-4xl text-terracotta"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold mb-4">自己成長のフィールド</h3>
+                    <p class="text-gray-200 leading-relaxed">
+                        未知の環境での試行錯誤、仲間との議論、ゼロからの企画。あらゆる経験が、あなたの可能性とリーダーシップを大きく広げます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="py-24 bg-white px-6 md:px-12 lg:px-24 overflow-hidden">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-dark heading-accent">歴史と実績</h2>
+                <p class="mt-6 text-gray-600 leading-relaxed">
+                    2001年の設立以来、先輩たちが繋いできた情熱のバトン。<br>
+                    毎年、世界の様々な地域に赴き、現地の保健医療課題に真摯に向き合ってきました。
+                </p>
+            </div>
+
+            <!-- 海外研修の歩み -->
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h3 class="font-heading text-2xl font-bold text-terracotta inline-flex items-center gap-2 border-b-2 border-terracotta pb-2">
+                    <i class="fa-solid fa-plane"></i> 海外研修の歩み
+                </h3>
+            </div>
+
+            <div class="relative timeline-container py-8">
+                
+                <!-- 2002 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2002年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ケニア研修</p>
+                        <p class="text-sm text-gray-600">ハクナマタタの原点。衛生教育や村落での健康調査を開始し、現地との信頼関係の基礎を築く。</p>
+                    </div>
+                </div>
+
+                <!-- 2004 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-olive mb-1">2004年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ネパール研修</p>
+                        <p class="text-sm text-gray-600">アフリカからアジアへも視野を広げ、新たな医療環境や社会問題についての学びを深める。</p>
+                    </div>
+                </div>
+
+                <!-- 2005 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2005年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ベトナム研修</p>
+                        <p class="text-sm text-gray-600">東南アジアでの研修を開始。ベトナムの保健医療政策や地域医療の実態を現地で学ぶ。</p>
+                    </div>
+                </div>
+
+                <!-- 2006 (NEW) -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-sunset border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">2006年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>フィリピン研修</p>
+                        <p class="text-sm text-gray-600">フィリピンの農村部などに滞在し、住民の健康課題の抽出や医療施設の見学などを通して現地の実態を学ぶ。</p>
+                    </div>
+                </div>
+
+                <!-- 2007 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2007年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>カンボジア研修</p>
+                        <p class="text-sm text-gray-600">第5回海外研修。カンボジアの歴史的背景と医療課題に向き合い、現地のNGOや病院を訪問。</p>
+                    </div>
+                </div>
+
+                <!-- 2008 (UPDATED from 2010) -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-olive mb-1">2008年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>タンザニア研修</p>
+                        <p class="text-sm text-gray-600">再びアフリカの大地へ。現地の公衆衛生課題や生活環境について深く調査・交流を行う。</p>
+                    </div>
+                </div>
+
+                <!-- 2010 キューバ (UPDATED) -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2010年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>キューバ研修</p>
+                        <p class="text-sm text-gray-600">独自の医療制度（ファミリードクター制度など）を持つキューバを訪問。予防医療や地域密着型の保健システムについて現地で深く学ぶ。</p>
+                    </div>
+                </div>
+
+                <!-- 2013 エチオピア (UPDATED) -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-sunset border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">2013年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>エチオピア研修</p>
+                        <p class="text-sm text-gray-600">約2週間にわたるフィールドワークでエチオピアを訪問。現地の医療システムや保健課題を実体験を通して学ぶ。</p>
+                    </div>
+                </div>
+
+                <!-- 2017 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2017年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>カンボジア研修</p>
+                        <p class="text-sm text-gray-600">キリングフィールドやプノンペンの施設を訪問し、平和学習と保健医療の関わりを学ぶ。</p>
+                    </div>
+                </div>
+
+                <!-- 2019/2020 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-gray-400 border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-gray-500 mb-1">2019年度 (2020年3月)</h3>
+                        <p class="font-bold text-gray-500 text-lg mb-2"><i class="fa-solid fa-plane-slash text-sm mr-2"></i>中国研修（※中止）</p>
+                        <p class="text-sm text-gray-500">北京・上海への研修を企画するも、新型コロナウイルスの世界的流行により直前で無念の中止に。（幻の中国編）</p>
+                    </div>
+                </div>
+
+                <!-- 2022 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2022年度 (2023年3月)</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ベトナム研修</p>
+                        <p class="text-sm text-gray-600">コロナ禍を乗り越え、数年ぶりに海外研修を再開。社会保障制度や感染症対策の現場を視察。</p>
+                    </div>
+                </div>
+
+                <!-- 2023-2024 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2023年度・2024年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>フィリピン研修</p>
+                        <p class="text-sm text-gray-600">農村部（バランガイ）にて地域住民への健康調査を実施。変化する現地のニーズに合わせた支援体制のアップデートを継続中。</p>
+                    </div>
+                </div>
+
+                <!-- 2024 ネパール (NEW) -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-olive mb-1">2024年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ネパール研修</p>
+                        <p class="text-sm text-gray-600">ネパールにて都市部と山間部の医療格差などを学ぶ海外研修を実施。歴史ある活動先で新たな知見を得る。</p>
+                    </div>
+                </div>
+
+                <!-- 2025 ケニア (NEW) -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow animate-pulse"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2025年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ケニア研修</p>
+                        <p class="text-sm text-gray-600">ハクナマタタ原点の地であるケニアを再訪。長年培ってきた現地との繋がりを活かし、現在の保健医療課題に向き合う。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 小町（地域活動）との歩み -->
+            <div class="text-center mt-20 mb-10" data-aos="fade-up">
+                <h3 class="font-heading text-2xl font-bold text-olive inline-flex items-center gap-2 border-b-2 border-olive pb-2">
+                    <i class="fa-solid fa-seedling"></i> 小町（地域活動）との歩み
+                </h3>
+            </div>
+
+            <div class="relative timeline-container py-8">
+                <!-- 小町 1 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-olive mb-1">2002年度〜</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-house-user text-sm mr-2"></i>地域への飛び込みと家庭訪問</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            「地域住民の中に飛び込み、健康について共に学ぶ」ことを目指し、家庭訪問などを通じて関係性を構築。単なる学生の実習地としてではなく、人と人との繋がりを第一に歩み始めました。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 小町 2 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-sunset border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">2005年頃〜</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-wheat-awn text-sm mr-2"></i>農業体験と学園祭での発信</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            畑仕事や田植え、稲刈り、サツマイモ掘りなどの農業体験を通じた交流が活発化。学園祭（錦祭）で収穫物を販売し、活動を社会へ発信することで、学生と地域の距離が大きく縮まりました。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 小町 3 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2010年代〜現在</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-heart-pulse text-sm mr-2"></i>交流から見つける健康とホスピタリティ</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            血圧測定や健康教室、伝統の「わら馬づくり」や夏・冬の交流会などを継続実施。地域の方々から温かさや生活の知恵を教わりながら、医療者としてのホスピタリティを育む大切な場となっています。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 小町と海外を両立させる意味 -->
+            <div class="mt-16 bg-beige rounded-2xl p-8 md:p-12 shadow-inner border border-gray-200" data-aos="fade-up">
+                <h3 class="font-heading text-2xl font-bold text-terracotta mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-link"></i> 海外研修と地域活動(小町)が繋がる意味
+                </h3>
+                <p class="text-gray-700 leading-relaxed text-lg mb-4">
+                    「チームハクナマタタ」の最大の強みは、海外での学びと、地元・小町での実践が深く連動していることです。
+                </p>
+                <p class="text-gray-700 leading-relaxed text-lg mb-4">
+                    小町で地域住民の生活や人生に寄り添い、直接対話する経験があるからこそ、海外の異文化の中でも人々の暮らしに共感し、表面的な問題だけでなくその根底にある真の課題に気づくことができます。
+                </p>
+                <p class="text-gray-700 leading-relaxed text-lg font-bold text-olive">
+                    「海外研修で何を学ぶかは小町で学んだことにつながり、海外で得た広い視野や新しい視点は、帰国後に再び小町の活動へと還元すべきである。」
+                </p>
+                <p class="text-gray-700 leading-relaxed text-lg mt-4">
+                    私たちは、遠い世界と足元の地域を行き来することで、真の「国際保健」と「地域医療」のあり方を学び続けています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="py-24 bg-terracotta text-white px-6 md:px-12 text-center relative overflow-hidden">
+        <i class="fa-solid fa-earth-americas absolute -right-20 -bottom-20 text-[300px] text-white opacity-10"></i>
+        
+        <div class="relative z-10 max-w-3xl mx-auto" data-aos="zoom-in">
+            <h2 class="font-heading text-3xl md:text-5xl font-black mb-6 leading-tight">
+                一緒に、世界を少しだけ<br>良くしませんか？
+            </h2>
+            <p class="text-lg md:text-xl text-orange-100 mb-6">
+                ハクナマタタでは、新しい仲間を募集しています。<br>
+                特別なスキルは必要ありません。必要なのは「知りたい」「関わりたい」という情熱だけです。
+            </p>
+            
+            <div class="bg-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm border border-white/20 mt-8 flex flex-col items-center w-full">
+                <p class="mb-4 text-orange-100 font-bold text-sm md:text-lg">お問い合わせ・参加希望はこちらまで</p>
+                <a href="mailto:hakumata.kaigai@gmail.com" class="text-xl sm:text-2xl md:text-4xl font-black text-white hover:text-sunset transition-colors flex flex-col sm:flex-row items-center gap-2 md:gap-3 w-full justify-center">
+                    <i class="fa-solid fa-envelope flex-shrink-0"></i> 
+                    <span class="break-all text-center">hakumata.kaigai@gmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-400 py-12 px-6 md:px-12 border-t-4 border-sunset">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Instagram Feed Preview Section -->
+            <div class="mb-12 border-b border-gray-700 pb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-white font-bold text-xl flex items-center gap-2">
+                        <i class="fa-brands fa-instagram text-sunset"></i> Latest from Instagram
+                    </h3>
+                    <a href="https://www.instagram.com/tori_hakumata/" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-white transition-colors border border-gray-600 rounded-full px-4 py-1 hover:border-gray-400">
+                        @tori_hakumata をフォロー
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Instagram Post 1 -->
+                    <a href="https://www.instagram.com/tv/B-04nuYBKJj/" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-xl aspect-square bg-gray-800">
+                        <img src="./insta1.jpg" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=400&auto=format&fit=crop'" alt="Instagram 投稿1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i class="fa-solid fa-heart text-white text-3xl"></i>
+                        </div>
+                    </a>
+                    <!-- Instagram Post 2 -->
+                    <a href="https://www.instagram.com/p/DVh26IDijmv/" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-xl aspect-square bg-gray-800">
+                        <img src="./insta2.jpg" onerror="this.src='https://images.unsplash.com/photo-1542810634-71277d95dc8c?q=80&w=400&auto=format&fit=crop'" alt="Instagram 投稿2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i class="fa-solid fa-heart text-white text-3xl"></i>
+                        </div>
+                    </a>
+                    <!-- Instagram Post 3 -->
+                    <a href="https://www.instagram.com/p/DM7csSzTcLe/" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-xl aspect-square bg-gray-800">
+                        <img src="./insta3.jpg" onerror="this.src='https://images.unsplash.com/photo-1593113514214-419b43170e53?q=80&w=400&auto=format&fit=crop'" alt="Instagram 投稿3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i class="fa-solid fa-heart text-white text-3xl"></i>
+                        </div>
+                    </a>
+                    <!-- Instagram Post 4 -->
+                    <a href="https://www.instagram.com/p/DIHBgHizPKD/" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-xl aspect-square bg-gray-800">
+                        <img src="./insta4.jpg" onerror="this.src='https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=400&auto=format&fit=crop'" alt="Instagram 投稿4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i class="fa-solid fa-heart text-white text-3xl"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center">
+                    <img src="./image.png" alt="ハクナマタタ ロゴ" class="h-14 w-auto object-contain bg-white rounded-lg p-2" onerror="this.src='https://placehold.co/200x60/333/FFF?text=Hakunamatata'">
+                </div>
+                
+                <div class="flex gap-6">
+                    <a href="https://x.com/tori_hakumata?s=20" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors text-2xl" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/tori_hakumata/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors text-2xl" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/torihakumata/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors text-2xl" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="text-center mt-8 text-sm">
+                <p>&copy; 2026 国際保健友の会 ハクナマタタ (Hakunamatata). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Toggle Button -->
+    <button id="chatbot-toggle" class="fixed bottom-6 right-6 w-16 h-16 bg-terracotta text-white rounded-full shadow-[0_0_20px_rgba(204,85,0,0.5)] flex items-center justify-center text-3xl hover:bg-orange-700 transition-transform duration-300 z-50 hover:scale-110 group">
+        <i class="fa-solid fa-robot group-hover:animate-bounce"></i>
+    </button>
+
+    <!-- Chatbot Window -->
+    <div id="chatbot-window" class="fixed bottom-24 right-6 w-[340px] md:w-[400px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col hidden overflow-hidden border border-gray-200 transition-all duration-300" style="height: 550px; max-height: 80vh;">
+        <!-- Header -->
+        <div class="bg-terracotta text-white p-4 flex justify-between items-center shadow-md z-10">
+            <div class="font-bold flex items-center gap-2">
+                <div class="w-8 h-8 bg-white text-terracotta rounded-full flex items-center justify-center"><i class="fa-solid fa-robot"></i></div>
+                ハクマタ案内アシスタント
+            </div>
+            <button id="chatbot-close" class="text-white hover:text-gray-200 text-xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <!-- Messages Area -->
+        <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 flex flex-col gap-4 text-sm font-medium">
+            <!-- Initial Bot Message -->
+            <div class="flex items-start gap-2">
+                <div class="w-8 h-8 rounded-full bg-terracotta text-white flex items-center justify-center flex-shrink-0 mt-1"><i class="fa-solid fa-robot"></i></div>
+                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-700 leading-relaxed">
+                    こんにちは！ハクナマタタの案内アシスタントです。<br>
+                    当団体の活動や歴史、海外研修や小町での活動についてなど、なんでも聞いてください！
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 bg-white border-t border-gray-100 flex gap-2">
+            <input type="text" id="chatbot-input" class="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/50" placeholder="メッセージを入力..." autocomplete="off">
+            <button id="chatbot-send" class="w-10 h-10 bg-terracotta text-white rounded-full flex items-center justify-center hover:bg-orange-700 transition-colors flex-shrink-0">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS Animation Init
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md', 'text-dark');
+                navbar.classList.remove('text-white', 'py-4');
+                navbar.classList.add('py-2');
+                
+                const links = navbar.querySelectorAll('a:not(.bg-terracotta)');
+                links.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-dark');
+                });
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md', 'text-dark', 'py-2');
+                navbar.classList.add('text-white', 'py-4');
+                
+                const links = navbar.querySelectorAll('a:not(.bg-terracotta)');
+                links.forEach(link => {
+                    link.classList.remove('text-dark');
+                });
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || targetId.startsWith('mailto:')) return;
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ==========================================
+        // Chatbot Logic (Gemini API Integration)
+        // ==========================================
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotClose = document.getElementById('chatbot-close');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSend = document.getElementById('chatbot-send');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+
+        // 実行環境が提供するAPIキー
+        const apiKey = ""; 
+
+        // Geminiのシステムインストラクション（事前知識）
+        const systemInstruction = `あなたは鳥取大学医学部の学生団体「国際保健友の会 ハクナマタタ（通称ハクマタ）」の案内アシスタントチャットボットです。
+ユーザーからの質問に対して、以下の情報をもとに、優しく、親切で簡潔な日本語で答えてください。
+- 設立: 2001年
+- 活動理念: 国境を越え、保健医療の課題に草の根で向き合う。支援する・されるを超えた真の国際協力。
+- 海外研修先（実績）: ケニア、エチオピア、タンザニア、フィリピン、ベトナム、カンボジア、ネパール、中国、キューバ。
+- 国内活動（小町活動）: 鳥取大学周辺の「小町」地域で、家庭訪問、農業体験、血圧測定や健康教室などを通じた交流を継続。
+- 重要な考え方: 「海外研修で何を学ぶかは小町で学んだことにつながり、海外で得た広い視野や新しい視点は、帰国後に再び小町の活動へと還元すべきである。」
+- 3つの魅力: 1. 圧倒的なリアル、2. 深い人と人の繋がり、3. 自己成長のフィールド。
+- 連絡先: 参加希望やお問い合わせは hakumata.kaigai@gmail.com まで。
+- 厳守事項: プライバシー保護のため、学生や関係者の個人名は絶対にフルネームで出さず、必ずイニシャル2文字（例：T.Yさん、M.A先輩など）で表現してください。
+`;
+
+        // チャットの開閉
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('hidden');
+            if(!chatbotWindow.classList.contains('hidden')) {
+                chatbotInput.focus();
+            }
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.classList.add('hidden');
+        });
+
+        // メッセージをUIに追加する関数
+        function appendMessage(text, isUser = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex items-start gap-2 ${isUser ? 'flex-row-reverse' : ''}`;
+            
+            let iconHtml = isUser 
+                ? `<div class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center flex-shrink-0 mt-1"><i class="fa-solid fa-user"></i></div>`
+                : `<div class="w-8 h-8 rounded-full bg-terracotta text-white flex items-center justify-center flex-shrink-0 mt-1"><i class="fa-solid fa-robot"></i></div>`;
+            
+            let bubbleClass = isUser
+                ? `bg-dark text-white p-3 rounded-2xl rounded-tr-none shadow-sm leading-relaxed max-w-[85%] break-words`
+                : `bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-700 leading-relaxed border border-gray-100 max-w-[85%] break-words`;
+            
+            // 簡単なマークダウン（改行）対応
+            const formattedText = text.replace(/\n/g, '<br>');
+
+            msgDiv.innerHTML = `
+                ${iconHtml}
+                <div class="${bubbleClass}">${formattedText}</div>
+            `;
+            
+            chatbotMessages.appendChild(msgDiv);
+            scrollToBottom();
+        }
+
+        // 入力中のローディングアニメーションを追加
+        function appendTypingIndicator() {
+            const msgDiv = document.createElement('div');
+            msgDiv.id = 'typing-indicator';
+            msgDiv.className = `flex items-start gap-2`;
+            msgDiv.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-terracotta text-white flex items-center justify-center flex-shrink-0 mt-1"><i class="fa-solid fa-robot"></i></div>
+                <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 typing-indicator">
+                    <span></span><span></span><span></span>
+                </div>
+            `;
+            chatbotMessages.appendChild(msgDiv);
+            scrollToBottom();
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        function scrollToBottom() {
+            chatbotMessages.scrollTo({
+                top: chatbotMessages.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        // Gemini API呼び出し関数
+        async function fetchGeminiResponse(userMessage) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: userMessage }] }],
+                systemInstruction: { parts: [{ text: systemInstruction }] }
+            };
+
+            let retries = 5;
+            let delay = 1000;
+            
+            while(retries > 0) {
+                try {
+                    const response = await fetch(url, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if(!response.ok) throw new Error("API request failed");
+                    
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "すみません、うまく答えられませんでした。";
+                } catch(error) {
+                    console.error("Gemini API Error:", error);
+                    retries--;
+                    if(retries === 0) break;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2; // 指数バックオフ
+                }
+            }
+            return "現在システムが混み合っているようです。少し時間をおいて再度お試しください。";
+        }
+
+        // 送信処理
+        async function handleSend() {
+            const text = chatbotInput.value.trim();
+            if (!text) return;
+
+            // ユーザーメッセージ表示
+            appendMessage(text, true);
+            chatbotInput.value = '';
+            
+            // ローディング表示
+            appendTypingIndicator();
+
+            // APIから回答取得
+            const responseText = await fetchGeminiResponse(text);
+            
+            // ローディング削除＆回答表示
+            removeTypingIndicator();
+            appendMessage(responseText, false);
+        }
+
+        chatbotSend.addEventListener('click', handleSend);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+```
