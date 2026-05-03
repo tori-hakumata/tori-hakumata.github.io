@@ -15,7 +15,7 @@
     <meta property="og:title" content="国際保健友の会 ハクナマタタ">
     <meta property="og:description" content="鳥取大学医学部の学生団体。世界と日本の地域社会で、保健医療の課題に草の根で向き合うフィールドワークを行っています。">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="./image.png"> <!-- シェアされた時に表示される画像（ロゴを流用） -->
+    <meta property="og:image" content="./image.png"> <!-- シェアされた時に表示される画像 -->
     <meta name="twitter:card" content="summary"> <!-- X(Twitter)での表示形式 -->
     <meta name="twitter:title" content="国際保健友の会 ハクナマタタ">
     <meta name="twitter:description" content="世界と地域を繋ぐ、鳥取大学医学部の国際保健サークル。新規メンバー募集中！">
@@ -773,8 +773,11 @@
         const chatbotSend = document.getElementById('chatbot-send');
         const chatbotMessages = document.getElementById('chatbot-messages');
 
-        // 実行環境が提供するAPIキー
-        const apiKey = "AIzaSyDiotF9UJDpjxhVQoF4RSjWhUHohFe_2YA"; 
+        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        // ここにGoogle AI Studioで取得したAPIキーを入力してください
+        // 例: const apiKey = "AIzaSyB1C2D3...";
+        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        const apiKey = ""; 
 
         // Geminiのシステムインストラクション（事前知識）
         const systemInstruction = `あなたは鳥取大学医学部の学生団体「国際保健友の会 ハクナマタタ（通称ハクマタ）」の案内アシスタントチャットボットです。
@@ -787,7 +790,7 @@
 - 3つの魅力: 1. 圧倒的なリアル、2. 深い人と人の繋がり、3. 自己成長のフィールド。
 - 連絡先: 参加希望やお問い合わせは hakumata.kaigai@gmail.com まで。
 - 厳守事項: プライバシー保護のため、学生や関係者の個人名は絶対にフルネームで出さず、必ずイニシャル2文字（例：T.Yさん、M.A先輩など）で表現してください。
-`;
+※長すぎる回答は避け、チャットに適した短めの文章で返答してください。`;
 
         // チャットの開閉
         chatbotToggle.addEventListener('click', () => {
@@ -855,6 +858,11 @@
 
         // Gemini API呼び出し関数
         async function fetchGeminiResponse(userMessage) {
+            // APIキーが入力されていない場合のエラーハンドリング
+            if (!apiKey || apiKey === "") {
+                return "現在チャットボットの設定中です。少し時間をおいて再度お試しください。";
+            }
+
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
             const payload = {
                 contents: [{ parts: [{ text: userMessage }] }],
