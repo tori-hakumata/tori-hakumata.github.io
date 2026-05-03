@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>国際保健友の会 ハクナマタタ - 温もりと情熱の大地</title>
     
+    <!-- ========================================== -->
+    <!-- SEO対策（検索エンジン・SNSシェア最適化） -->
+    <!-- ========================================== -->
+    <title>国際保健友の会 ハクナマタタ (Hakunamatata) - 鳥取大学医学部 学生団体</title>
+    <meta name="description" content="鳥取大学医学部の学生団体「国際保健友の会 ハクナマタタ（通称ハクマタ）」。2001年からケニア、フィリピン、ネパールなどでの海外研修や、国内（小町・東北）での地域医療・国際保健活動を通じて、草の根から保健医療課題に向き合っています。新規メンバー募集中！">
+    <meta name="keywords" content="ハクナマタタ,ハクマタ,鳥取大学,医学部,国際保健,学生団体,ボランティア,海外研修,地域医療,医学生,看護学生">
+    
+    <!-- OGP (SNSでシェアされた時に綺麗に表示させるための設定) -->
+    <meta property="og:title" content="国際保健友の会 ハクナマタタ">
+    <meta property="og:description" content="鳥取大学医学部の学生団体。世界と日本の地域社会で、保健医療の課題に草の根で向き合うフィールドワークを行っています。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./image.png"> <!-- シェアされた時に表示される画像（ロゴを流用） -->
+    <meta name="twitter:card" content="summary"> <!-- X(Twitter)での表示形式 -->
+    <meta name="twitter:title" content="国際保健友の会 ハクナマタタ">
+    <meta name="twitter:description" content="世界と地域を繋ぐ、鳥取大学医学部の国際保健サークル。新規メンバー募集中！">
+    <!-- ========================================== -->
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -146,28 +162,28 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative h-screen min-h-[600px] w-full bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop');">
+    <header class="relative min-h-screen w-full flex flex-col justify-center bg-cover bg-center bg-no-repeat" style="min-height: 100svh; background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop');">
         <div class="absolute inset-0 hero-overlay"></div>
-        <div class="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
+        <div class="relative z-10 w-full px-6 md:px-16 lg:px-24 max-w-7xl mx-auto pt-32 pb-24">
             <div data-aos="fade-up" data-aos-duration="1000">
-                <span class="inline-block py-1 px-3 rounded-full bg-olive text-white text-sm font-bold tracking-widest mb-6">SINCE 2001</span>
-                <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
+                <span class="inline-block py-1 px-3 rounded-full bg-olive text-white text-sm font-bold tracking-widest mb-4 md:mb-6">SINCE 2001</span>
+                <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
                     リアルな世界と触れ、<br>
                     自分をアップデートする。<br>
                     <span class="text-sunset">国際保健の最前線へ。</span>
                 </h1>
-                <p class="text-gray-200 text-lg md:text-xl max-w-2xl font-medium leading-relaxed mb-10">
+                <p class="text-gray-200 text-base sm:text-lg md:text-xl max-w-2xl font-medium leading-relaxed mb-10">
                     20年以上の歴史を持つ学生団体「ハクナマタタ」が届ける、心動くフィールドワーク。教科書には載っていない「人と人の繋がり」が、ここにはあります。
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#about" class="bg-white text-terracotta border-2 border-white hover:bg-transparent hover:text-white px-8 py-4 rounded-full font-bold text-center transition-all">
+                    <a href="#about" class="bg-white text-terracotta border-2 border-white hover:bg-transparent hover:text-white px-8 py-4 rounded-full font-bold text-center transition-all inline-block w-full sm:w-auto">
                         活動を知る
                     </a>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-20">
+            <i class="fa-solid fa-chevron-down text-3xl opacity-80"></i>
         </div>
     </header>
 
@@ -176,7 +192,8 @@
         <div class="flex flex-col lg:flex-row items-center gap-16">
             <div class="w-full lg:w-1/2" data-aos="fade-right">
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop" alt="ミーティングの様子" class="rounded-2xl shadow-2xl relative z-10">
+                    <!-- 2枚目の画像をローカルファイル（about-image.jpg）から読み込む -->
+                    <img src="./about-image.jpg" onerror="this.src='https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop'" alt="ハクナマタタの活動の様子" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl relative z-10">
                     <div class="absolute -bottom-6 -right-6 w-full h-full border-4 border-terracotta rounded-2xl z-0"></div>
                 </div>
             </div>
@@ -355,7 +372,7 @@
                     </div>
                 </div>
 
-                <!-- 2006 (NEW) -->
+                <!-- 2006 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-sunset border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
@@ -405,10 +422,20 @@
                     </div>
                 </div>
 
+                <!-- 2014 ミャンマー(中止) -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-gray-400 border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-gray-500 mb-1">2014年度</h3>
+                        <p class="font-bold text-gray-500 text-lg mb-2"><i class="fa-solid fa-plane-slash text-sm mr-2"></i>ミャンマー研修（※中止）</p>
+                        <p class="text-sm text-gray-500">ミャンマーでの海外研修を企画・準備していたが、現地の情勢等によりやむなく中止に。</p>
+                    </div>
+                </div>
+
                 <!-- 2017 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
-                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
                         <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2017年度</h3>
                         <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>カンボジア研修</p>
                         <p class="text-sm text-gray-600">キリングフィールドやプノンペンの施設を訪問し、平和学習と保健医療の関わりを学ぶ。</p>
@@ -418,7 +445,7 @@
                 <!-- 2019/2020 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-gray-400 border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
-                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
                         <h3 class="font-heading text-xl font-bold text-gray-500 mb-1">2019年度 (2020年3月)</h3>
                         <p class="font-bold text-gray-500 text-lg mb-2"><i class="fa-solid fa-plane-slash text-sm mr-2"></i>中国研修（※中止）</p>
                         <p class="text-sm text-gray-500">北京・上海への研修を企画するも、新型コロナウイルスの世界的流行により直前で無念の中止に。（幻の中国編）</p>
@@ -428,7 +455,7 @@
                 <!-- 2022 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
-                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
                         <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2022年度 (2023年3月)</h3>
                         <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ベトナム研修</p>
                         <p class="text-sm text-gray-600">コロナ禍を乗り越え、数年ぶりに海外研修を再開。社会保障制度や感染症対策の現場を視察。</p>
@@ -438,8 +465,8 @@
                 <!-- 2023-2024 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
-                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2023年度・2024年度</h3>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2023・2024年度</h3>
                         <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>フィリピン研修</p>
                         <p class="text-sm text-gray-600">農村部（バランガイ）にて地域住民への健康調査を実施。変化する現地のニーズに合わせた支援体制のアップデートを継続中。</p>
                     </div>
@@ -448,7 +475,7 @@
                 <!-- 2024 ネパール -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
-                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
                         <h3 class="font-heading text-xl font-bold text-olive mb-1">2024年度</h3>
                         <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ネパール研修</p>
                         <p class="text-sm text-gray-600">ネパールにて都市部と山間部の医療格差などを学ぶ海外研修を実施。歴史ある活動先で新たな知見を得る。</p>
@@ -458,7 +485,7 @@
                 <!-- 2025 ケニア -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow animate-pulse"></div>
-                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
                         <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2025年度</h3>
                         <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ケニア研修</p>
                         <p class="text-sm text-gray-600">ハクナマタタ原点の地であるケニアを再訪。長年培ってきた現地との繋がりを活かし、現在の保健医療課題に向き合う。</p>
@@ -466,10 +493,10 @@
                 </div>
             </div>
 
-            <!-- 小町（地域活動）との歩み -->
+            <!-- 小町・東北（国内活動）との歩み -->
             <div class="text-center mt-20 mb-10" data-aos="fade-up">
                 <h3 class="font-heading text-2xl font-bold text-olive inline-flex items-center gap-2 border-b-2 border-olive pb-2">
-                    <i class="fa-solid fa-seedling"></i> 小町（地域活動）との歩み
+                    <i class="fa-solid fa-seedling"></i> 小町・東北（国内活動）との歩み
                 </h3>
             </div>
 
@@ -509,21 +536,45 @@
                         </p>
                     </div>
                 </div>
+
+                <!-- 東北 1 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2012・2013・2014年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-hands-holding-circle text-sm mr-2"></i>東北研修</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            東日本大震災を受け、被災地での健康支援と心のケア活動を展開。現地の方々との対話を通じ、寄り添う医療のあり方を学ぶ。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 東北 2 -->
+                <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
+                    <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
+                    <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2021年度</h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-hands-holding-circle text-sm mr-2"></i>東北研修</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            震災から10年という節目に東北研修を実施。コロナ禍の制限下でも工夫を凝らし、復興の現状や防災・減災について見識を深める。
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <!-- 小町と海外を両立させる意味 -->
             <div class="mt-16 bg-beige rounded-2xl p-8 md:p-12 shadow-inner border border-gray-200" data-aos="fade-up">
                 <h3 class="font-heading text-2xl font-bold text-terracotta mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-link"></i> 海外研修と地域活動(小町)が繋がる意味
+                    <i class="fa-solid fa-link"></i> 海外研修と地域活動が繋がる意味
                 </h3>
                 <p class="text-gray-700 leading-relaxed text-lg mb-4">
-                    「チームハクナマタタ」の最大の強みは、海外での学びと、地元・小町での実践が深く連動していることです。
+                    「チームハクナマタタ」の最大の強みは、海外での学びと、地元での実践が深く連動していることです。
                 </p>
                 <p class="text-gray-700 leading-relaxed text-lg mb-4">
-                    小町で地域住民の生活や人生に寄り添い、直接対話する経験があるからこそ、海外の異文化の中でも人々の暮らしに共感し、表面的な問題だけでなくその根底にある真の課題に気づくことができます。
+                    国内の地域社会で住民の生活や人生に寄り添い、直接対話する経験があるからこそ、海外の異文化の中でも人々の暮らしに共感し、表面的な問題だけでなくその根底にある真の課題に気づくことができます。
                 </p>
                 <p class="text-gray-700 leading-relaxed text-lg font-bold text-olive">
-                    「海外研修で何を学ぶかは小町で学んだことにつながり、海外で得た広い視野や新しい視点は、帰国後に再び小町の活動へと還元すべきである。」
+                    「海外研修で何を学ぶかは国内活動で学んだことにつながり、海外で得た広い視野や新しい視点は、帰国後に再び国内の活動へと還元すべきである。」
                 </p>
                 <p class="text-gray-700 leading-relaxed text-lg mt-4">
                     私たちは、遠い世界と足元の地域を行き来することで、真の「国際保健」と「地域医療」のあり方を学び続けています。
@@ -561,11 +612,11 @@
             
             <!-- Instagram Feed Preview Section -->
             <div class="mb-12 border-b border-gray-700 pb-12">
-                <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-white font-bold text-xl flex items-center gap-2">
-                        <i class="fa-brands fa-instagram text-sunset"></i> Latest from Instagram
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
+                    <h3 class="text-white font-bold text-xl flex items-center gap-2 font-heading tracking-wider">
+                        <i class="fa-brands fa-instagram text-sunset"></i> Our Instagram Highlights
                     </h3>
-                    <a href="https://www.instagram.com/tori_hakumata/" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-white transition-colors border border-gray-600 rounded-full px-4 py-1 hover:border-gray-400">
+                    <a href="https://www.instagram.com/tori_hakumata/" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-white transition-colors border border-gray-600 rounded-full px-4 py-1 hover:border-gray-400 inline-block">
                         @tori_hakumata をフォロー
                     </a>
                 </div>
@@ -602,18 +653,23 @@
                 </div>
             </div>
 
+            <!-- Footer Bottom Area -->
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex items-center">
-                    <img src="./image.png" alt="ハクナマタタ ロゴ" class="h-14 w-auto object-contain bg-white rounded-lg p-2" onerror="this.src='https://placehold.co/200x60/333/FFF?text=Hakunamatata'">
+                <!-- 顧問リンク -->
+                <div class="text-center md:text-left text-sm">
+                    <p class="mb-2 text-gray-500">顧問・サポート</p>
+                    <a href="https://www.med.tottori-u.ac.jp/envmed/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center justify-center md:justify-start gap-2 font-bold text-gray-300">
+                        <i class="fa-solid fa-building-columns"></i> 鳥取大学医学部社会医学講座環境予防医学分野
+                    </a>
                 </div>
                 
-                <div class="flex gap-6">
+                <div class="flex gap-6 mt-4 md:mt-0">
                     <a href="https://x.com/tori_hakumata?s=20" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors text-2xl" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://www.instagram.com/tori_hakumata/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors text-2xl" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://www.facebook.com/torihakumata/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors text-2xl" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
                 </div>
             </div>
-            <div class="text-center mt-8 text-sm">
+            <div class="text-center mt-10 pt-6 border-t border-gray-800 text-xs text-gray-500">
                 <p>&copy; 2026 国際保健友の会 ハクナマタタ (Hakunamatata). All rights reserved.</p>
             </div>
         </div>
@@ -642,7 +698,7 @@
                 <div class="w-8 h-8 rounded-full bg-terracotta text-white flex items-center justify-center flex-shrink-0 mt-1"><i class="fa-solid fa-robot"></i></div>
                 <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-gray-700 leading-relaxed">
                     こんにちは！ハクナマタタの案内アシスタントです。<br>
-                    当団体の活動や歴史、海外研修や小町での活動についてなど、なんでも聞いてください！
+                    当団体の活動や歴史、海外研修や国内での活動についてなど、なんでも聞いてください！
                 </div>
             </div>
         </div>
@@ -726,8 +782,8 @@
 - 設立: 2001年
 - 活動理念: 国境を越え、保健医療の課題に草の根で向き合う。支援する・されるを超えた真の国際協力。
 - 海外研修先（実績）: ケニア、エチオピア、タンザニア、フィリピン、ベトナム、カンボジア、ネパール、中国、キューバ。
-- 国内活動（小町活動）: 鳥取大学周辺の「小町」地域で、家庭訪問、農業体験、血圧測定や健康教室などを通じた交流を継続。
-- 重要な考え方: 「海外研修で何を学ぶかは小町で学んだことにつながり、海外で得た広い視野や新しい視点は、帰国後に再び小町の活動へと還元すべきである。」
+- 国内活動（小町活動・東北）: 鳥取大学周辺の「小町」地域での交流継続。また2012年等には東北の被災地支援も実施。
+- 重要な考え方: 「海外研修で何を学ぶかは国内活動で学んだことにつながり、海外で得た広い視野や新しい視点は、帰国後に再び国内の活動へと還元すべきである。」
 - 3つの魅力: 1. 圧倒的なリアル、2. 深い人と人の繋がり、3. 自己成長のフィールド。
 - 連絡先: 参加希望やお問い合わせは hakumata.kaigai@gmail.com まで。
 - 厳守事項: プライバシー保護のため、学生や関係者の個人名は絶対にフルネームで出さず、必ずイニシャル2文字（例：T.Yさん、M.A先輩など）で表現してください。
