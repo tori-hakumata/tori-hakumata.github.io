@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- 横揺れ防止のため、htmlとbodyに幅の固定と横スクロール禁止を追加 -->
 <html lang="ja" class="w-full max-w-full overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
@@ -16,8 +15,8 @@
     <meta property="og:title" content="国際保健友の会 ハクナマタタ">
     <meta property="og:description" content="鳥取大学医学部の学生団体。世界と日本の地域社会で、保健医療の課題に草の根で向き合うフィールドワークを行っています。">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="./image.png"> <!-- シェアされた時に表示される画像 -->
-    <meta name="twitter:card" content="summary"> <!-- X(Twitter)での表示形式 -->
+    <meta property="og:image" content="./image.png">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="国際保健友の会 ハクナマタタ">
     <meta name="twitter:description" content="世界と地域を繋ぐ、鳥取大学医学部の国際保健サークル。新規メンバー募集中！">
     <!-- ========================================== -->
@@ -61,7 +60,6 @@
             font-family: 'M PLUS Rounded 1c', sans-serif;
             background-color: #F9F6F0;
             color: #333333;
-            /* 横揺れを強制的に防ぐスタイル */
             overflow-x: hidden !important;
             width: 100% !important;
             max-width: 100vw !important;
@@ -119,26 +117,49 @@
             margin: 16px auto 0;
             border-radius: 2px;
         }
+
+        /* ========================================== */
+        /* 多言語切り替え用のCSS制御 */
+        /* ========================================== */
+        body.lang-en .lang-ja { display: none !important; }
+        body.lang-ja .lang-en { display: none !important; }
     </style>
 </head>
-<body class="antialiased selection:bg-terracotta selection:text-white w-full max-w-full overflow-x-hidden">
+<!-- 初期状態は lang-ja とする -->
+<body class="lang-ja antialiased selection:bg-terracotta selection:text-white w-full max-w-full overflow-x-hidden">
 
-<!-- ページ全体を包むラッパー（ここでも横揺れをブロックします） -->
 <div class="w-full max-w-full overflow-x-hidden relative">
 
     <!-- Navbar -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center text-white">
         <a href="#" class="flex items-center">
-            <img src="./image.png" alt="ハクナマタタ ロゴ" class="h-12 md:h-14 w-auto object-contain bg-white/80 rounded-lg p-1 shadow-sm transition-all" onerror="this.src='https://placehold.co/200x60/333/FFF?text=Hakunamatata'">
+            <img src="./image.png" alt="ハクナマタタ ロゴ" class="h-10 md:h-14 w-auto object-contain bg-white/80 rounded-lg p-1 shadow-sm transition-all" onerror="this.src='https://placehold.co/200x60/333/FFF?text=Hakunamatata'">
         </a>
+        
         <div class="hidden md:flex gap-8 font-bold text-sm tracking-wide">
-            <a href="#about" class="hover:text-sunset transition-colors">ハクナマタタとは</a>
-            <a href="#fields" class="hover:text-sunset transition-colors">活動フィールド</a>
-            <a href="#history" class="hover:text-sunset transition-colors">歴史と実績</a>
+            <a href="#about" class="hover:text-sunset transition-colors">
+                <span class="lang-ja">ハクナマタタとは</span><span class="lang-en">About Us</span>
+            </a>
+            <a href="#fields" class="hover:text-sunset transition-colors">
+                <span class="lang-ja">活動フィールド</span><span class="lang-en">Fields</span>
+            </a>
+            <a href="#history" class="hover:text-sunset transition-colors">
+                <span class="lang-ja">歴史と実績</span><span class="lang-en">History</span>
+            </a>
         </div>
-        <a href="#cta" class="bg-terracotta hover:bg-orange-700 text-white px-6 py-2 rounded-full font-bold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-            参加・お問い合わせ
-        </a>
+        
+        <div class="flex items-center gap-3 md:gap-4">
+            <!-- Language Toggle Switch -->
+            <div class="flex items-center gap-1 text-xs md:text-sm font-bold bg-black/30 backdrop-blur-sm rounded-full px-3 py-1 border border-white/20">
+                <button id="btn-lang-ja" class="text-sunset transition-colors py-1">JP</button>
+                <span class="text-white/50">|</span>
+                <button id="btn-lang-en" class="text-white/50 hover:text-white transition-colors py-1">EN</button>
+            </div>
+            
+            <a href="#cta" class="bg-terracotta hover:bg-orange-700 text-white px-4 md:px-6 py-2 rounded-full font-bold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-xs md:text-base whitespace-nowrap">
+                <span class="lang-ja">参加・お問い合わせ</span><span class="lang-en">Join Us</span>
+            </a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -147,17 +168,20 @@
         <div class="relative z-10 w-full px-6 md:px-16 lg:px-24 max-w-7xl mx-auto pt-32 pb-24">
             <div data-aos="fade-up" data-aos-duration="1000">
                 <span class="inline-block py-1 px-3 rounded-full bg-olive text-white text-sm font-bold tracking-widest mb-4 md:mb-6 mt-4 md:mt-0">SINCE 2001</span>
+                
                 <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
-                    リアルな世界と触れ、<br>
-                    自分をアップデートする。<br>
-                    <span class="text-sunset">国際保健の最前線へ。</span>
+                    <span class="lang-ja">リアルな世界に触れ、<br>自分をアップデートする。<br><span class="text-sunset">国際保健の最前線へ。</span></span>
+                    <span class="lang-en">Experience the real world,<br>update yourself.<br><span class="text-sunset">To the forefront of Global Health.</span></span>
                 </h1>
+                
                 <p class="text-gray-200 text-base sm:text-lg md:text-xl max-w-2xl font-medium leading-relaxed mb-10">
-                    20年以上の歴史を持つ学生団体「ハクナマタタ」が届ける、心動くフィールドワーク。教科書には載っていない「人と人の繋がり」が、ここにはあります。
+                    <span class="lang-ja">20年以上の歴史を持つ鳥取大学医学部の学生団体「ハクナマタタ」が届ける、心動くフィールドワーク。教科書には載っていない「人と人の繋がり」が、ここにはあります。</span>
+                    <span class="lang-en">Heart-moving fieldwork delivered by "Hakunamatata", a student organization of Tottori University Faculty of Medicine with over 20 years of history. Discover "human connections" you won't find in textbooks.</span>
                 </p>
+                
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#about" class="bg-white text-terracotta border-2 border-white hover:bg-transparent hover:text-white px-8 py-4 rounded-full font-bold text-center transition-all inline-block w-full sm:w-auto">
-                        活動を知る
+                        <span class="lang-ja">活動を知る</span><span class="lang-en">Learn More</span>
                     </a>
                 </div>
             </div>
@@ -172,23 +196,36 @@
         <div class="flex flex-col lg:flex-row items-center gap-16">
             <div class="w-full lg:w-1/2" data-aos="fade-right">
                 <div class="relative">
-                    <img src="./about-image.jpg" onerror="this.src='https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop'" alt="ハクナマタタの活動の様子" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl relative z-10">
+                    <img src="./about-image.jpg" onerror="this.src='https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop'" alt="活動の様子" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl relative z-10">
                     <div class="absolute -bottom-6 -right-6 w-full h-full border-4 border-terracotta rounded-2xl z-0 hidden md:block"></div>
                 </div>
             </div>
             <div class="w-full lg:w-1/2" data-aos="fade-left">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-dark">
-                    国境を越え、保健医療の課題に<br>草の根で向き合う。
+                    <span class="lang-ja">国境を越え、保健医療の課題に<br>草の根で向き合う。</span>
+                    <span class="lang-en">Crossing borders, facing health issues at the grassroots level.</span>
                 </h2>
                 <div class="w-16 h-2 bg-sunset mb-8 rounded"></div>
-                <p class="text-lg leading-relaxed text-gray-700 mb-6">
-                    国際保健友の会 ハクナマタタは、学生による、学生のための、世界と繋がるプラットフォームです。
+                
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 lang-ja">
+                    国際保健友の会 ハクナマタタは、鳥取大学医学部の学生が中心となって運営・活動する、世界と繋がるためのプラットフォームです。
                 </p>
-                <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 lang-en">
+                    The International Health Friendship Association "Hakunamatata" is a platform for connecting with the world, mainly operated and led by students from the Faculty of Medicine at Tottori University.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 lang-ja">
                     ケニア、エチオピア、タンザニア、フィリピン、ベトナム、カンボジア、ネパール、中国、キューバ、そして日本の地域社会（小町・東北）。私たちは現場に足を運び、現地の声に直接耳を傾けながら、彼らと共に歩み、共に学びます。
                 </p>
-                <p class="text-lg leading-relaxed text-gray-700 font-bold text-olive">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 lang-en">
+                    Kenya, Ethiopia, Tanzania, Philippines, Vietnam, Cambodia, Nepal, China, Cuba, and local communities in Japan. We visit these sites, listen directly to local voices, walk with them, and learn together.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 font-bold text-olive lang-ja">
                     「支援する・される」という関係を超えた、真の国際協力を目指して。
+                </p>
+                <p class="text-lg leading-relaxed text-gray-700 font-bold text-olive lang-en">
+                    Aiming for true international cooperation that transcends the relationship of "supporting and being supported".
                 </p>
             </div>
         </div>
@@ -198,11 +235,15 @@
     <section id="fields" class="py-24 bg-white px-6 md:px-12 lg:px-24">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-dark heading-accent">活動のフィールド</h2>
-                <p class="mt-6 text-gray-600 max-w-2xl mx-auto">世界各地、そして日本の地域社会へ。ハクナマタタの活動は多岐にわたります。</p>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-dark heading-accent">
+                    <span class="lang-ja">活動のフィールド</span><span class="lang-en">Our Fields</span>
+                </h2>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto lang-ja">世界各地、そして日本の地域社会へ。ハクナマタタの活動は多岐にわたります。</p>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto lang-en">Across the globe and to local communities in Japan. Our activities are diverse.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Field 1 -->
                 <div class="field-card rounded-2xl overflow-hidden shadow-lg bg-beige group" data-aos="fade-up" data-aos-delay="0">
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1974&auto=format&fit=crop" alt="Africa" class="w-full h-full object-cover field-card-img">
@@ -210,49 +251,68 @@
                     </div>
                     <div class="p-6">
                         <h3 class="font-heading text-lg font-bold mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-terracotta"></i> ケニア・エチオピア・タンザニア
+                            <i class="fa-solid fa-location-dot text-terracotta"></i> 
+                            <span class="lang-ja">ケニア・エチオピア・タンザニア</span><span class="lang-en">Kenya / Ethiopia / Tanzania</span>
                         </h3>
-                        <p class="text-sm text-gray-600 font-medium mb-3">衛生教育と現地調査</p>
-                        <p class="text-sm text-gray-700">ハクナマタタ原点の地アフリカ。現地の小学校やコミュニティに入り、子供たちへの衛生教育や健康状態の調査などを実施してきました。</p>
+                        <p class="text-sm text-gray-600 font-medium mb-3">
+                            <span class="lang-ja">衛生教育と現地調査</span><span class="lang-en">Hygiene Education & Research</span>
+                        </p>
+                        <p class="text-sm text-gray-700 lang-ja">ハクナマタタ原点の地アフリカ。現地の小学校やコミュニティに入り、子供たちへの衛生教育や健康状態の調査などを実施してきました。</p>
+                        <p class="text-sm text-gray-700 lang-en">Africa, our origin. We conduct hygiene education for children and health surveys by entering local elementary schools and communities.</p>
                     </div>
                 </div>
 
+                <!-- Field 2 -->
                 <div class="field-card rounded-2xl overflow-hidden shadow-lg bg-beige group" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=1974&auto=format&fit=crop" alt="Southeast Asia" class="w-full h-full object-cover field-card-img">
                     </div>
                     <div class="p-6">
                         <h3 class="font-heading text-lg font-bold mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-turquoise"></i> フィリピン・ベトナム・カンボジア
+                            <i class="fa-solid fa-location-dot text-turquoise"></i> 
+                            <span class="lang-ja">フィリピン・ベトナム・カンボジア</span><span class="lang-en">Philippines / Vietnam / Cambodia</span>
                         </h3>
-                        <p class="text-sm text-gray-600 font-medium mb-3">地域住民への健康調査・相談</p>
-                        <p class="text-sm text-gray-700">東南アジアの農村部に滞在し、現地の医療従事者や学生と協働しながら、住民の健康課題の抽出と健康相談を実施します。</p>
+                        <p class="text-sm text-gray-600 font-medium mb-3">
+                            <span class="lang-ja">地域住民への健康調査・相談</span><span class="lang-en">Health Surveys & Consultations</span>
+                        </p>
+                        <p class="text-sm text-gray-700 lang-ja">東南アジアの農村部に滞在し、現地の医療従事者や学生と協働しながら、住民の健康課題の抽出と健康相談を実施します。</p>
+                        <p class="text-sm text-gray-700 lang-en">Staying in rural Southeast Asia, we identify residents' health issues and provide health consultations in collaboration with local medical professionals and students.</p>
                     </div>
                 </div>
 
+                <!-- Field 3 -->
                 <div class="field-card rounded-2xl overflow-hidden shadow-lg bg-beige group" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2074&auto=format&fit=crop" alt="East Asia" class="w-full h-full object-cover field-card-img">
                     </div>
                     <div class="p-6">
                         <h3 class="font-heading text-lg font-bold mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-olive"></i> ネパール・中国・キューバ
+                            <i class="fa-solid fa-location-dot text-olive"></i> 
+                            <span class="lang-ja">ネパール・中国・キューバ</span><span class="lang-en">Nepal / China / Cuba</span>
                         </h3>
-                        <p class="text-sm text-gray-600 font-medium mb-3">医療システムと文化の学び</p>
-                        <p class="text-sm text-gray-700">都市と山間部の医療格差、独自のファミリードクター制度など、国ごとの多様な保健医療政策について現地機関と連携し深く学びます。</p>
+                        <p class="text-sm text-gray-600 font-medium mb-3">
+                            <span class="lang-ja">医療システムと文化の学び</span><span class="lang-en">Learning Medical Systems</span>
+                        </p>
+                        <p class="text-sm text-gray-700 lang-ja">都市と山間部の医療格差、独自のファミリードクター制度など、国ごとの多様な保健医療政策について現地機関と連携し深く学びます。</p>
+                        <p class="text-sm text-gray-700 lang-en">We deeply learn about diverse health policies of each country, such as medical disparities and unique family doctor systems, in cooperation with local institutions.</p>
                     </div>
                 </div>
 
+                <!-- Field 4 -->
                 <div class="field-card rounded-2xl overflow-hidden shadow-lg bg-beige group" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=2092&auto=format&fit=crop" alt="Japan" class="w-full h-full object-cover field-card-img">
                     </div>
                     <div class="p-6">
                         <h3 class="font-heading text-lg font-bold mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-sunset"></i> 日本 (東北・小町)
+                            <i class="fa-solid fa-location-dot text-sunset"></i> 
+                            <span class="lang-ja">日本 (東北・小町)</span><span class="lang-en">Japan (Tohoku & Komachi)</span>
                         </h3>
-                        <p class="text-sm text-gray-600 font-medium mb-3">被災地支援と地域医療</p>
-                        <p class="text-sm text-gray-700">東北での心のケアや、地元（小町）での農業を通じた住民との交流、健康教室など、足元からの保健医療にも注力しています。</p>
+                        <p class="text-sm text-gray-600 font-medium mb-3">
+                            <span class="lang-ja">被災地支援と地域医療</span><span class="lang-en">Disaster Relief & Community Medicine</span>
+                        </p>
+                        <p class="text-sm text-gray-700 lang-ja">東北での心のケアや、地元（小町）での農業を通じた住民との交流、健康教室など、足元からの保健医療にも注力しています。</p>
+                        <p class="text-sm text-gray-700 lang-en">We also focus on grassroots health care, such as mental care in Tohoku, interacting with residents through agriculture in our hometown (Komachi), and health classes.</p>
                     </div>
                 </div>
             </div>
@@ -263,39 +323,47 @@
     <section id="features" class="py-24 bg-olive text-white px-6 md:px-12 lg:px-24">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">ハクナマタタの3つの魅力</h2>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">
+                    <span class="lang-ja">ハクナマタタの3つの魅力</span><span class="lang-en">3 Core Values of Hakunamatata</span>
+                </h2>
                 <div class="w-16 h-1 bg-sunset mx-auto"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Feature 1 -->
                 <div class="text-center" data-aos="fade-up" data-aos-delay="0">
                     <div class="w-24 h-24 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-6">
                         <i class="fa-solid fa-earth-africa text-4xl text-sunset"></i>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4">圧倒的なリアル</h3>
-                    <p class="text-gray-200 leading-relaxed">
-                        観光旅行や座学では決して得られない、現地の保健医療課題に直接触れる経験。教科書を超えた学びが現場にあります。
-                    </p>
+                    <h3 class="font-heading text-2xl font-bold mb-4">
+                        <span class="lang-ja">圧倒的なリアル</span><span class="lang-en">Overwhelming Reality</span>
+                    </h3>
+                    <p class="text-gray-200 leading-relaxed lang-ja">観光旅行や座学では決して得られない、現地の保健医療課題に直接触れる経験。教科書を超えた学びが現場にあります。</p>
+                    <p class="text-gray-200 leading-relaxed lang-en">Experiences of directly touching local health issues that can never be gained through sightseeing trips or classroom lectures. Learning beyond textbooks is on site.</p>
                 </div>
 
+                <!-- Feature 2 -->
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-24 h-24 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-6">
                         <i class="fa-solid fa-handshake-angle text-4xl text-turquoise"></i>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4">深い人と人の繋がり</h3>
-                    <p class="text-gray-200 leading-relaxed">
-                        一時的な訪問者としてではなく、生活を共にし、対話する。言葉の壁を越えた温かい交流と、一生モノの絆が生まれます。
-                    </p>
+                    <h3 class="font-heading text-2xl font-bold mb-4">
+                        <span class="lang-ja">深い人と人の繋がり</span><span class="lang-en">Deep Human Connections</span>
+                    </h3>
+                    <p class="text-gray-200 leading-relaxed lang-ja">一時的な訪問者としてではなく、生活を共にし、対話する。言葉の壁を越えた温かい交流と、一生モノの絆が生まれます。</p>
+                    <p class="text-gray-200 leading-relaxed lang-en">Sharing life and communicating, not as temporary visitors. Warm interactions transcending language barriers and lifelong bonds are born.</p>
                 </div>
 
+                <!-- Feature 3 -->
                 <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-24 h-24 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-6">
                         <i class="fa-solid fa-arrow-trend-up text-4xl text-terracotta"></i>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4">自己成長のフィールド</h3>
-                    <p class="text-gray-200 leading-relaxed">
-                        未知の環境での試行錯誤、仲間との議論、ゼロからの企画。あらゆる経験が、あなたの可能性とリーダーシップを大きく広げます。
-                    </p>
+                    <h3 class="font-heading text-2xl font-bold mb-4">
+                        <span class="lang-ja">自己成長のフィールド</span><span class="lang-en">Field for Self-Growth</span>
+                    </h3>
+                    <p class="text-gray-200 leading-relaxed lang-ja">未知の環境での試行錯誤、仲間との議論、ゼロからの企画。あらゆる経験が、あなたの可能性とリーダーシップを大きく広げます。</p>
+                    <p class="text-gray-200 leading-relaxed lang-en">Trial and error in unknown environments, discussions with peers, planning from scratch. Every experience will greatly expand your potential and leadership.</p>
                 </div>
             </div>
         </div>
@@ -305,17 +373,24 @@
     <section id="history" class="py-24 bg-white px-6 md:px-12 lg:px-24 overflow-hidden">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-dark heading-accent">歴史と実績</h2>
-                <p class="mt-6 text-gray-600 leading-relaxed">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-dark heading-accent">
+                    <span class="lang-ja">歴史と実績</span><span class="lang-en">History & Achievements</span>
+                </h2>
+                <p class="mt-6 text-gray-600 leading-relaxed lang-ja">
                     2001年の設立以来、先輩たちが繋いできた情熱のバトン。<br>
                     毎年、世界の様々な地域に赴き、現地の保健医療課題に真摯に向き合ってきました。
+                </p>
+                <p class="mt-6 text-gray-600 leading-relaxed lang-en">
+                    The baton of passion passed down by seniors since 2001.<br>
+                    Every year, we travel to various regions and sincerely face local health and medical challenges.
                 </p>
             </div>
 
             <!-- 海外研修の歩み -->
             <div class="text-center mb-10" data-aos="fade-up">
                 <h3 class="font-heading text-2xl font-bold text-terracotta inline-flex items-center gap-2 border-b-2 border-terracotta pb-2">
-                    <i class="fa-solid fa-plane"></i> 海外研修の歩み
+                    <i class="fa-solid fa-plane"></i> 
+                    <span class="lang-ja">海外研修の歩み</span><span class="lang-en">History of Overseas Training</span>
                 </h3>
             </div>
 
@@ -325,9 +400,14 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2002年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ケニア研修</p>
-                        <p class="text-sm text-gray-600">ハクナマタタの原点。衛生教育や村落での健康調査を開始し、現地との信頼関係の基礎を築く。</p>
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">
+                            <span class="lang-ja">2002年度</span><span class="lang-en">2002</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">ケニア研修</span><span class="lang-en">Kenya Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">ハクナマタタの原点。衛生教育や村落での健康調査を開始し、現地との信頼関係の基礎を築く。</p>
+                        <p class="text-sm text-gray-600 lang-en">The origin. Started hygiene education and health surveys in villages, building trust with locals.</p>
                     </div>
                 </div>
 
@@ -335,9 +415,14 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-olive mb-1">2004年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ネパール研修</p>
-                        <p class="text-sm text-gray-600">アフリカからアジアへも視野を広げ、新たな医療環境や社会問題についての学びを深める。</p>
+                        <h3 class="font-heading text-xl font-bold text-olive mb-1">
+                            <span class="lang-ja">2004年度</span><span class="lang-en">2004</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">ネパール研修</span><span class="lang-en">Nepal Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">アフリカからアジアへも視野を広げ、新たな医療環境や社会問題についての学びを深める。</p>
+                        <p class="text-sm text-gray-600 lang-en">Expanded horizons to Asia, learning about new medical environments and social issues.</p>
                     </div>
                 </div>
 
@@ -345,9 +430,14 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2005年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ベトナム研修</p>
-                        <p class="text-sm text-gray-600">東南アジアでの研修を開始。ベトナムの保健医療政策や地域医療の実態を現地で学ぶ。</p>
+                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">
+                            <span class="lang-ja">2005年度</span><span class="lang-en">2005</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">ベトナム研修</span><span class="lang-en">Vietnam Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">東南アジアでの研修を開始。ベトナムの保健医療政策や地域医療の実態を現地で学ぶ。</p>
+                        <p class="text-sm text-gray-600 lang-en">Started training in Southeast Asia. Learned about Vietnam's health policies and community medicine.</p>
                     </div>
                 </div>
 
@@ -355,9 +445,14 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-sunset border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">2006年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>フィリピン研修</p>
-                        <p class="text-sm text-gray-600">フィリピンの農村部などに滞在し、住民の健康課題の抽出や医療施設の見学などを通して現地の実態を学ぶ。</p>
+                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">
+                            <span class="lang-ja">2006年度</span><span class="lang-en">2006</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">フィリピン研修</span><span class="lang-en">Philippines Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">フィリピンの農村部などに滞在し、住民の健康課題の抽出や医療施設の見学などを通して現地の実態を学ぶ。</p>
+                        <p class="text-sm text-gray-600 lang-en">Stayed in rural Philippines, learning the realities by identifying residents' health issues.</p>
                     </div>
                 </div>
 
@@ -365,9 +460,14 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2007年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>カンボジア研修</p>
-                        <p class="text-sm text-gray-600">第5回海外研修。カンボジアの歴史的背景と医療課題に向き合い、現地のNGOや病院を訪問。</p>
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">
+                            <span class="lang-ja">2007年度</span><span class="lang-en">2007</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">カンボジア研修</span><span class="lang-en">Cambodia Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">第5回海外研修。カンボジアの歴史的背景と医療課題に向き合い、現地のNGOや病院を訪問。</p>
+                        <p class="text-sm text-gray-600 lang-en">Faced Cambodia's historical background and medical issues, visiting local NGOs and hospitals.</p>
                     </div>
                 </div>
 
@@ -375,39 +475,59 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-olive mb-1">2008年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>タンザニア研修</p>
-                        <p class="text-sm text-gray-600">再びアフリカの大地へ。現地の公衆衛生課題や生活環境について深く調査・交流を行う。</p>
+                        <h3 class="font-heading text-xl font-bold text-olive mb-1">
+                            <span class="lang-ja">2008年度</span><span class="lang-en">2008</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">タンザニア研修</span><span class="lang-en">Tanzania Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">再びアフリカの大地へ。現地の公衆衛生課題や生活環境について深く調査・交流を行う。</p>
+                        <p class="text-sm text-gray-600 lang-en">Back to Africa. Deeply investigated and interacted regarding local public health issues.</p>
                     </div>
                 </div>
 
-                <!-- 2010 キューバ -->
+                <!-- 2010 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2010年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>キューバ研修</p>
-                        <p class="text-sm text-gray-600">独自の医療制度（ファミリードクター制度など）を持つキューバを訪問。予防医療や地域密着型の保健システムについて現地で深く学ぶ。</p>
+                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">
+                            <span class="lang-ja">2010年度</span><span class="lang-en">2010</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">キューバ研修</span><span class="lang-en">Cuba Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">独自の医療制度（ファミリードクター制度など）を持つキューバを訪問。予防医療や地域密着型の保健システムについて現地で深く学ぶ。</p>
+                        <p class="text-sm text-gray-600 lang-en">Visited Cuba with its unique family doctor system. Deeply learned about preventive medicine.</p>
                     </div>
                 </div>
 
-                <!-- 2013 エチオピア -->
+                <!-- 2013 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-sunset border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">2013年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>エチオピア研修</p>
-                        <p class="text-sm text-gray-600">約2週間にわたるフィールドワークでエチオピアを訪問。現地の医療システムや保健課題を実体験を通して学ぶ。</p>
+                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">
+                            <span class="lang-ja">2013年度</span><span class="lang-en">2013</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">エチオピア研修</span><span class="lang-en">Ethiopia Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">約2週間にわたるフィールドワークでエチオピアを訪問。現地の医療システムや保健課題を実体験を通して学ぶ。</p>
+                        <p class="text-sm text-gray-600 lang-en">2-week fieldwork to learn local medical systems and health challenges through hands-on experience.</p>
                     </div>
                 </div>
 
-                <!-- 2014 ミャンマー(中止) -->
+                <!-- 2014 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-gray-400 border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-gray-500 mb-1">2014年度</h3>
-                        <p class="font-bold text-gray-500 text-lg mb-2"><i class="fa-solid fa-plane-slash text-sm mr-2"></i>ミャンマー研修（※中止）</p>
-                        <p class="text-sm text-gray-500">ミャンマーでの海外研修を企画・準備していたが、現地の情勢等によりやむなく中止に。</p>
+                        <h3 class="font-heading text-xl font-bold text-gray-500 mb-1">
+                            <span class="lang-ja">2014年度</span><span class="lang-en">2014</span>
+                        </h3>
+                        <p class="font-bold text-gray-500 text-lg mb-2"><i class="fa-solid fa-plane-slash text-sm mr-2"></i>
+                            <span class="lang-ja">ミャンマー研修（※中止）</span><span class="lang-en">Myanmar Training (*Cancelled)</span>
+                        </p>
+                        <p class="text-sm text-gray-500 lang-ja">ミャンマーでの海外研修を企画・準備していたが、現地の情勢等によりやむなく中止に。</p>
+                        <p class="text-sm text-gray-500 lang-en">Planned and prepared, but unfortunately cancelled due to local conditions.</p>
                     </div>
                 </div>
 
@@ -415,9 +535,14 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2017年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>カンボジア研修</p>
-                        <p class="text-sm text-gray-600">キリングフィールドやプノンペンの施設を訪問し、平和学習と保健医療の関わりを学ぶ。</p>
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">
+                            <span class="lang-ja">2017年度</span><span class="lang-en">2017</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">カンボジア研修</span><span class="lang-en">Cambodia Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">キリングフィールドやプノンペンの施設を訪問し、平和学習と保健医療の関わりを学ぶ。</p>
+                        <p class="text-sm text-gray-600 lang-en">Visited Killing Fields and facilities in Phnom Penh, learning the link between peace and health.</p>
                     </div>
                 </div>
 
@@ -425,9 +550,14 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-gray-400 border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-gray-500 mb-1">2019年度 (2020年3月)</h3>
-                        <p class="font-bold text-gray-500 text-lg mb-2"><i class="fa-solid fa-plane-slash text-sm mr-2"></i>中国研修（※中止）</p>
-                        <p class="text-sm text-gray-500">北京・上海への研修を企画するも、新型コロナウイルスの世界的流行により直前で無念の中止に。（幻の中国編）</p>
+                        <h3 class="font-heading text-xl font-bold text-gray-500 mb-1">
+                            <span class="lang-ja">2019年度</span><span class="lang-en">2019</span>
+                        </h3>
+                        <p class="font-bold text-gray-500 text-lg mb-2"><i class="fa-solid fa-plane-slash text-sm mr-2"></i>
+                            <span class="lang-ja">中国研修（※中止）</span><span class="lang-en">China Training (*Cancelled)</span>
+                        </p>
+                        <p class="text-sm text-gray-500 lang-ja">北京・上海への研修を企画するも、新型コロナウイルスの世界的流行により直前で無念の中止に。</p>
+                        <p class="text-sm text-gray-500 lang-en">Cancelled just before departure due to the global COVID-19 pandemic.</p>
                     </div>
                 </div>
 
@@ -435,9 +565,14 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2022年度 (2023年3月)</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ベトナム研修</p>
-                        <p class="text-sm text-gray-600">コロナ禍を乗り越え、数年ぶりに海外研修を再開。社会保障制度や感染症対策の現場を視察。</p>
+                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">
+                            <span class="lang-ja">2022年度</span><span class="lang-en">2022</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">ベトナム研修</span><span class="lang-en">Vietnam Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">コロナ禍を乗り越え、数年ぶりに海外研修を再開。社会保障制度や感染症対策の現場を視察。</p>
+                        <p class="text-sm text-gray-600 lang-en">Resumed overseas training. Inspected social security and infection control sites.</p>
                     </div>
                 </div>
 
@@ -445,29 +580,44 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2023・2024年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>フィリピン研修</p>
-                        <p class="text-sm text-gray-600">農村部（バランガイ）にて地域住民への健康調査を実施。変化する現地のニーズに合わせた支援体制のアップデートを継続中。</p>
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">
+                            <span class="lang-ja">2023・2024年度</span><span class="lang-en">2023-2024</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">フィリピン研修</span><span class="lang-en">Philippines Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">農村部（バランガイ）にて地域住民への健康調査を実施。変化する現地のニーズに合わせた支援体制のアップデートを継続中。</p>
+                        <p class="text-sm text-gray-600 lang-en">Conducted health surveys in rural areas (Barangay). Updating support systems to meet changing needs.</p>
                     </div>
                 </div>
 
-                <!-- 2024 ネパール -->
+                <!-- 2024 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-olive mb-1">2024年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ネパール研修</p>
-                        <p class="text-sm text-gray-600">ネパールにて都市部と山間部の医療格差などを学ぶ海外研修を実施。歴史ある活動先で新たな知見を得る。</p>
+                        <h3 class="font-heading text-xl font-bold text-olive mb-1">
+                            <span class="lang-ja">2024年度</span><span class="lang-en">2024</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">ネパール研修</span><span class="lang-en">Nepal Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">ネパールにて都市部と山間部の医療格差などを学ぶ海外研修を実施。歴史ある活動先で新たな知見を得る。</p>
+                        <p class="text-sm text-gray-600 lang-en">Learned about medical disparities between urban and mountainous areas. Gaining new insights in historic activity sites.</p>
                     </div>
                 </div>
 
-                <!-- 2025 ケニア -->
+                <!-- 2025 -->
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow animate-pulse"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2025年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>ケニア研修</p>
-                        <p class="text-sm text-gray-600">ハクナマタタ原点の地であるケニアを再訪。長年培ってきた現地との繋がりを活かし、現在の保健医療課題に向き合う。</p>
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">
+                            <span class="lang-ja">2025年度</span><span class="lang-en">2025</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-plane-departure text-sm mr-2"></i>
+                            <span class="lang-ja">ケニア研修</span><span class="lang-en">Kenya Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 lang-ja">ハクナマタタ原点の地であるケニアを再訪。長年培ってきた現地との繋がりを活かし、現在の保健医療課題に向き合う。</p>
+                        <p class="text-sm text-gray-600 lang-en">Revisiting Kenya, our origin. Utilizing long-cultivated ties to face current health issues.</p>
                     </div>
                 </div>
             </div>
@@ -475,7 +625,8 @@
             <!-- 小町・東北（国内活動）との歩み -->
             <div class="text-center mt-20 mb-10" data-aos="fade-up">
                 <h3 class="font-heading text-2xl font-bold text-olive inline-flex items-center gap-2 border-b-2 border-olive pb-2">
-                    <i class="fa-solid fa-seedling"></i> 小町・東北（国内活動）との歩み
+                    <i class="fa-solid fa-seedling"></i> 
+                    <span class="lang-ja">小町・東北（国内活動）との歩み</span><span class="lang-en">History with Komachi & Tohoku (Domestic)</span>
                 </h3>
             </div>
 
@@ -484,10 +635,17 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-olive border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-olive mb-1">2002年度〜</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-house-user text-sm mr-2"></i>地域への飛び込みと家庭訪問</p>
-                        <p class="text-sm text-gray-600 leading-relaxed">
+                        <h3 class="font-heading text-xl font-bold text-olive mb-1">
+                            <span class="lang-ja">2002年度〜</span><span class="lang-en">Since 2002</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-house-user text-sm mr-2"></i>
+                            <span class="lang-ja">地域への飛び込みと家庭訪問</span><span class="lang-en">Diving into the community & Home visits</span>
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-ja">
                             「地域住民の中に飛び込み、健康について共に学ぶ」ことを目指し、家庭訪問などを通じて関係性を構築。単なる学生の実習地としてではなく、人と人との繋がりを第一に歩み始めました。
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-en">
+                            Aiming to "learn together about health with residents", we built relationships through home visits. We started by prioritizing human connections, not just as a training ground for students.
                         </p>
                     </div>
                 </div>
@@ -496,10 +654,17 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-sunset border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">2005年頃〜</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-wheat-awn text-sm mr-2"></i>農業体験と学園祭での発信</p>
-                        <p class="text-sm text-gray-600 leading-relaxed">
-                            畑仕事や田植え、稲刈り、サツマイモ掘りなどの農業体験を通じた交流が活発化。学園祭（錦祭）で収穫物を販売し、活動を社会へ発信することで、学生と地域の距離が大きく縮まりました。
+                        <h3 class="font-heading text-xl font-bold text-sunset mb-1">
+                            <span class="lang-ja">2005年頃〜</span><span class="lang-en">Around 2005</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-wheat-awn text-sm mr-2"></i>
+                            <span class="lang-ja">農業体験と学園祭での発信</span><span class="lang-en">Agricultural experiences & University festivals</span>
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-ja">
+                            畑仕事や田植え、稲刈りなどの農業体験を通じた交流が活発化。学園祭で収穫物を販売し、活動を社会へ発信することで、学生と地域の距離が大きく縮まりました。
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-en">
+                            Interacted actively through farming experiences like rice planting. Selling harvests at festivals to share our activities with society greatly narrowed the distance between students and the community.
                         </p>
                     </div>
                 </div>
@@ -508,10 +673,17 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-turquoise border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">2010年代〜現在</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-heart-pulse text-sm mr-2"></i>交流から見つける健康とホスピタリティ</p>
-                        <p class="text-sm text-gray-600 leading-relaxed">
+                        <h3 class="font-heading text-xl font-bold text-turquoise mb-1">
+                            <span class="lang-ja">2010年代〜現在</span><span class="lang-en">2010s to Present</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-heart-pulse text-sm mr-2"></i>
+                            <span class="lang-ja">交流から見つける健康とホスピタリティ</span><span class="lang-en">Finding health & hospitality through interaction</span>
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-ja">
                             血圧測定や健康教室、伝統の「わら馬づくり」や夏と冬の交流会などを継続実施。地域の方々から温かさや生活の知恵を教わりながら、医療者としてのホスピタリティを育む大切な場となっています。
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-en">
+                            Continuing health classes, traditional events, and Summer/Winter exchange events. A precious place to nurture hospitality as medical professionals while learning warmth and life wisdom from the locals.
                         </p>
                     </div>
                 </div>
@@ -520,10 +692,17 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 md:ml-auto timeline-content md:pl-12">
-                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2012・2013・2014年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-hands-holding-circle text-sm mr-2"></i>東北研修</p>
-                        <p class="text-sm text-gray-600 leading-relaxed">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">
+                            <span class="lang-ja">2012〜2014年度</span><span class="lang-en">2012-2014</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-hands-holding-circle text-sm mr-2"></i>
+                            <span class="lang-ja">東北研修</span><span class="lang-en">Tohoku Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-ja">
                             東日本大震災を受け、被災地での健康支援と心のケア活動を展開。現地の方々との対話を通じ、寄り添う医療のあり方を学ぶ。
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-en">
+                            Provided health support and mental care in disaster areas after the Great East Japan Earthquake. Learned about compassionate medical care through dialogue with locals.
                         </p>
                     </div>
                 </div>
@@ -532,10 +711,17 @@
                 <div class="timeline-item relative flex w-full mb-8 items-center" data-aos="fade-up">
                     <div class="absolute left-[16px] md:left-1/2 w-4 h-4 bg-terracotta border-4 border-white rounded-full transform -translate-x-[6px] md:-translate-x-1/2 z-10 shadow"></div>
                     <div class="w-full pl-10 md:pl-0 md:w-1/2 timeline-content md:pr-12">
-                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">2021年度</h3>
-                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-hands-holding-circle text-sm mr-2"></i>東北研修</p>
-                        <p class="text-sm text-gray-600 leading-relaxed">
+                        <h3 class="font-heading text-xl font-bold text-terracotta mb-1">
+                            <span class="lang-ja">2021年度</span><span class="lang-en">2021</span>
+                        </h3>
+                        <p class="font-bold text-dark text-lg mb-2"><i class="fa-solid fa-hands-holding-circle text-sm mr-2"></i>
+                            <span class="lang-ja">東北研修</span><span class="lang-en">Tohoku Training</span>
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-ja">
                             震災から10年という節目に東北研修を実施。コロナ禍の制限下でも工夫を凝らし、復興の現状や防災・減災について見識を深める。
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed lang-en">
+                            Conducted Tohoku training marking the 10th anniversary of the earthquake. Deepened knowledge on current reconstruction and disaster prevention.
                         </p>
                     </div>
                 </div>
@@ -544,19 +730,35 @@
             <!-- 小町と海外を両立させる意味 -->
             <div class="mt-16 bg-beige rounded-2xl p-8 md:p-12 shadow-inner border border-gray-200" data-aos="fade-up">
                 <h3 class="font-heading text-2xl font-bold text-terracotta mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-link"></i> 海外研修と地域活動が繋がる意味
+                    <i class="fa-solid fa-link"></i> 
+                    <span class="lang-ja">海外研修と地域活動が繋がる意味</span><span class="lang-en">The Meaning of Connecting Overseas and Local</span>
                 </h3>
-                <p class="text-gray-700 leading-relaxed text-lg mb-4">
+                <p class="text-gray-700 leading-relaxed text-lg mb-4 lang-ja">
                     「チームハクナマタタ」の最大の強みは、海外での学びと、地元での実践が深く連動していることです。
                 </p>
-                <p class="text-gray-700 leading-relaxed text-lg mb-4">
+                <p class="text-gray-700 leading-relaxed text-lg mb-4 lang-en">
+                    The greatest strength of "Team Hakunamatata" is that overseas learning and local practices are deeply linked.
+                </p>
+
+                <p class="text-gray-700 leading-relaxed text-lg mb-4 lang-ja">
                     国内の地域社会で住民の生活や人生に寄り添い、直接対話する経験があるからこそ、海外の異文化の中でも人々の暮らしに共感し、表面的な問題だけでなくその根底にある真の課題に気づくことができます。
                 </p>
-                <p class="text-gray-700 leading-relaxed text-lg font-bold text-olive">
+                <p class="text-gray-700 leading-relaxed text-lg mb-4 lang-en">
+                    Because we have experience in engaging with residents' lives and having direct dialogues in domestic communities, we can empathize with people's lives even in foreign cultures overseas, noticing not only superficial problems but the true underlying issues.
+                </p>
+
+                <p class="text-gray-700 leading-relaxed text-lg font-bold text-olive lang-ja">
                     「海外研修で何を学ぶかは国内活動で学んだことにつながり、海外で得た広い視野や新しい視点は、帰国後に再び国内の活動へと還元すべきである。」
                 </p>
-                <p class="text-gray-700 leading-relaxed text-lg mt-4">
+                <p class="text-gray-700 leading-relaxed text-lg font-bold text-olive lang-en">
+                    "What we learn in overseas training leads to what we learned in domestic activities, and the broad perspectives gained overseas should be returned to domestic activities."
+                </p>
+
+                <p class="text-gray-700 leading-relaxed text-lg mt-4 lang-ja">
                     私たちは、遠い世界と足元の地域を行き来することで、真の「国際保健」と「地域医療」のあり方を学び続けています。
+                </p>
+                <p class="text-gray-700 leading-relaxed text-lg mt-4 lang-en">
+                    We continue to learn the true state of "Global Health" and "Community Medicine" by going back and forth between the distant world and our local communities.
                 </p>
             </div>
         </div>
@@ -568,15 +770,19 @@
         
         <div class="relative z-10 max-w-3xl mx-auto" data-aos="zoom-in">
             <h2 class="font-heading text-3xl md:text-5xl font-black mb-6 leading-tight">
-                一緒に、世界を少しだけ<br>良くしませんか？
+                <span class="lang-ja">一緒に、世界を少しだけ<br>良くしませんか？</span><span class="lang-en">Why not make the world<br>a little better with us?</span>
             </h2>
-            <p class="text-lg md:text-xl text-orange-100 mb-6">
-                ハクナマタタでは、新しい仲間を募集しています。<br>
-                特別なスキルは必要ありません。必要なのは「知りたい」「関わりたい」という情熱だけです。
+            <p class="text-lg md:text-xl text-orange-100 mb-6 lang-ja">
+                ハクナマタタでは、新しい仲間を募集しています。<br>特別なスキルは必要ありません。必要なのは「知りたい」「関わりたい」という情熱だけです。
+            </p>
+            <p class="text-lg md:text-xl text-orange-100 mb-6 lang-en">
+                Hakunamatata is looking for new members.<br>No special skills are required. All you need is the passion to "know" and "get involved".
             </p>
             
             <div class="bg-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm border border-white/20 mt-8 flex flex-col items-center w-full">
-                <p class="mb-4 text-orange-100 font-bold text-sm md:text-lg">お問い合わせ・参加希望はこちらまで</p>
+                <p class="mb-4 text-orange-100 font-bold text-sm md:text-lg">
+                    <span class="lang-ja">お問い合わせ・参加希望はこちらまで</span><span class="lang-en">Contact us / Join us here</span>
+                </p>
                 <a href="mailto:hakumata.kaigai@gmail.com" class="text-xl sm:text-2xl md:text-4xl font-black text-white hover:text-sunset transition-colors flex flex-col sm:flex-row items-center gap-2 md:gap-3 w-full justify-center">
                     <i class="fa-solid fa-envelope flex-shrink-0"></i> 
                     <span class="break-all text-center">hakumata.kaigai@gmail.com</span>
@@ -596,35 +802,31 @@
                         <i class="fa-brands fa-instagram text-sunset"></i> Our Instagram Highlights
                     </h3>
                     <a href="https://www.instagram.com/tori_hakumata/" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-white transition-colors border border-gray-600 rounded-full px-4 py-1 hover:border-gray-400 inline-block">
-                        @tori_hakumata をフォロー
+                        <span class="lang-ja">@tori_hakumata をフォロー</span><span class="lang-en">Follow @tori_hakumata</span>
                     </a>
                 </div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <!-- Instagram Post 1 -->
                     <a href="https://www.instagram.com/tv/B-04nuYBKJj/" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-xl aspect-square bg-gray-800">
-                        <img src="./insta1.jpg" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=400&auto=format&fit=crop'" alt="Instagram 投稿1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <img src="./insta1.jpg" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=400&auto=format&fit=crop'" alt="Instagram 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <i class="fa-solid fa-heart text-white text-3xl"></i>
                         </div>
                     </a>
-                    <!-- Instagram Post 2 -->
                     <a href="https://www.instagram.com/p/DVh26IDijmv/" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-xl aspect-square bg-gray-800">
-                        <img src="./insta2.jpg" onerror="this.src='https://images.unsplash.com/photo-1542810634-71277d95dc8c?q=80&w=400&auto=format&fit=crop'" alt="Instagram 投稿2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <img src="./insta2.jpg" onerror="this.src='https://images.unsplash.com/photo-1542810634-71277d95dc8c?q=80&w=400&auto=format&fit=crop'" alt="Instagram 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <i class="fa-solid fa-heart text-white text-3xl"></i>
                         </div>
                     </a>
-                    <!-- Instagram Post 3 -->
                     <a href="https://www.instagram.com/p/DM7csSzTcLe/" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-xl aspect-square bg-gray-800">
-                        <img src="./insta3.jpg" onerror="this.src='https://images.unsplash.com/photo-1593113514214-419b43170e53?q=80&w=400&auto=format&fit=crop'" alt="Instagram 投稿3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <img src="./insta3.jpg" onerror="this.src='https://images.unsplash.com/photo-1593113514214-419b43170e53?q=80&w=400&auto=format&fit=crop'" alt="Instagram 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <i class="fa-solid fa-heart text-white text-3xl"></i>
                         </div>
                     </a>
-                    <!-- Instagram Post 4 -->
                     <a href="https://www.instagram.com/p/DIHBgHizPKD/" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-xl aspect-square bg-gray-800">
-                        <img src="./insta4.jpg" onerror="this.src='https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=400&auto=format&fit=crop'" alt="Instagram 投稿4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <img src="./insta4.jpg" onerror="this.src='https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=400&auto=format&fit=crop'" alt="Instagram 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <i class="fa-solid fa-heart text-white text-3xl"></i>
                         </div>
@@ -645,7 +847,8 @@
             <!-- 顧問リンクとコピーライト -->
             <div class="text-center mt-10 pt-6 border-t border-gray-800 text-xs text-gray-500 flex flex-col items-center gap-3">
                 <a href="https://www.med.tottori-u.ac.jp/envmed/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors inline-flex items-center justify-center gap-1.5 opacity-60 hover:opacity-100">
-                    <i class="fa-solid fa-building-columns"></i> 顧問・サポート: 鳥取大学医学部社会医学講座環境予防医学分野
+                    <i class="fa-solid fa-building-columns"></i> 
+                    <span class="lang-ja">顧問・サポート: 鳥取大学医学部社会医学講座環境予防医学分野</span><span class="lang-en">Advisor: Div. of Environmental and Preventive Medicine, Tottori Univ.</span>
                 </a>
                 <p>&copy; 2026 国際保健友の会 ハクナマタタ (Hakunamatata). All rights reserved.</p>
             </div>
@@ -704,9 +907,42 @@
                 }
             });
         });
+
+        // ==========================================
+        // 多言語切り替えスクリプト (Language Toggle)
+        // ==========================================
+        const langJaBtn = document.getElementById('btn-lang-ja');
+        const langEnBtn = document.getElementById('btn-lang-en');
+        
+        function switchLanguage(lang) {
+            const body = document.body;
+            if (lang === 'en') {
+                body.classList.remove('lang-ja');
+                body.classList.add('lang-en');
+                document.documentElement.lang = 'en';
+                // ボタンスタイル更新
+                langEnBtn.classList.add('text-sunset');
+                langEnBtn.classList.remove('text-white/50', 'hover:text-white');
+                langJaBtn.classList.add('text-white/50', 'hover:text-white');
+                langJaBtn.classList.remove('text-sunset');
+            } else {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-ja');
+                document.documentElement.lang = 'ja';
+                // ボタンスタイル更新
+                langJaBtn.classList.add('text-sunset');
+                langJaBtn.classList.remove('text-white/50', 'hover:text-white');
+                langEnBtn.classList.add('text-white/50', 'hover:text-white');
+                langEnBtn.classList.remove('text-sunset');
+            }
+        }
+
+        langJaBtn.addEventListener('click', () => switchLanguage('ja'));
+        langEnBtn.addEventListener('click', () => switchLanguage('en'));
     </script>
 </body>
 </html>
+
 
 
 
