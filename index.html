@@ -31,6 +31,9 @@
     
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Swiper CSS (スライドショー用) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -123,9 +126,35 @@
         /* ========================================== */
         body.lang-en .lang-ja { display: none !important; }
         body.lang-ja .lang-en { display: none !important; }
+
+        /* ========================================== */
+        /* スライドショーのカスタマイズ */
+        /* ========================================== */
+        .swiper-button-next, .swiper-button-prev {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.2);
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50%;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 20px !important;
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: rgba(0,0,0,0.5);
+        }
+        .swiper-pagination-bullet {
+            background-color: white !important;
+            opacity: 0.6 !important;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #CC5500 !important;
+            opacity: 1 !important;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
-<!-- 初期状態は lang-ja とする -->
 <body class="lang-ja antialiased selection:bg-terracotta selection:text-white w-full max-w-full overflow-x-hidden">
 
 <div class="w-full max-w-full overflow-x-hidden relative">
@@ -196,10 +225,45 @@
         <div class="flex flex-col lg:flex-row items-center gap-16">
             <div class="w-full lg:w-1/2" data-aos="fade-right">
                 <div class="relative">
-                    <img src="./about-image.jpg" onerror="this.src='https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop'" alt="活動の様子" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl relative z-10">
+                    
+                    <!-- ============================== -->
+                    <!-- スライドショー (Swiper) 部分 (5枚) -->
+                    <!-- ============================== -->
+                    <div class="swiper aboutSwiper rounded-2xl shadow-2xl relative z-10 w-full aspect-[4/3]">
+                        <div class="swiper-wrapper">
+                            <!-- スライド1 -->
+                            <div class="swiper-slide">
+                                <img src="./about1.jpg" onerror="this.src='https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop'" alt="活動の様子1" class="w-full h-full object-cover">
+                            </div>
+                            <!-- スライド2 -->
+                            <div class="swiper-slide">
+                                <img src="./about2.jpg" onerror="this.src='https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=2070&auto=format&fit=crop'" alt="活動の様子2" class="w-full h-full object-cover">
+                            </div>
+                            <!-- スライド3 -->
+                            <div class="swiper-slide">
+                                <img src="./about3.jpg" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop'" alt="活動の様子3" class="w-full h-full object-cover">
+                            </div>
+                            <!-- スライド4 -->
+                            <div class="swiper-slide">
+                                <img src="./about4.jpg" onerror="this.src='https://images.unsplash.com/photo-1526976663112-0058b8f2d5e2?q=80&w=2070&auto=format&fit=crop'" alt="活動の様子4" class="w-full h-full object-cover">
+                            </div>
+                            <!-- スライド5 -->
+                            <div class="swiper-slide">
+                                <img src="./about5.jpg" onerror="this.src='https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=2070&auto=format&fit=crop'" alt="活動の様子5" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <!-- ページネーション（下のドット） -->
+                        <div class="swiper-pagination"></div>
+                        <!-- ナビゲーション（左右の矢印） -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                    <!-- ============================== -->
+
                     <div class="absolute -bottom-6 -right-6 w-full h-full border-4 border-terracotta rounded-2xl z-0 hidden md:block"></div>
                 </div>
             </div>
+            
             <div class="w-full lg:w-1/2" data-aos="fade-left">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-dark">
                     <span class="lang-ja">国境を越え、保健医療の課題に<br>草の根で向き合う。</span>
@@ -866,6 +930,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         // AOS Animation Init
         AOS.init({
@@ -873,6 +938,27 @@
             offset: 100,
             duration: 800,
             easing: 'ease-out-cubic',
+        });
+
+        // Swiper (スライドショー) Init
+        const swiper = new Swiper('.aboutSwiper', {
+            loop: true,
+            autoplay: {
+                delay: 3500, // 3.5秒ごとに切り替わる
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'fade', // ふわっと切り替わるエフェクト
+            fadeEffect: {
+                crossFade: true
+            }
         });
 
         // Navbar Scroll Effect
@@ -949,8 +1035,4 @@
     </script>
 </body>
 </html>
-
-
-
-
 
